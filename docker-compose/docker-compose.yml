@@ -1,0 +1,55 @@
+version: '2'
+services:
+    enotarygateway-app:
+        image: enotarygateway
+        environment:
+            - SPRING_PROFILES_ACTIVE=dev,swagger
+            - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
+            - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
+            - SPRING_DATASOURCE_URL=jdbc:mariadb://enotarygateway-mariadb:3306/enotarygateway
+            - JHIPSTER_SLEEP=45
+            - JHIPSTER_REGISTRY_PASSWORD=admin
+        ports:
+            - 8080:8080
+    enotarygateway-mariadb:
+        image: mariadb:10.3.7
+        environment:
+            - MYSQL_USER=root
+            - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+            - MYSQL_DATABASE=enotarygateway
+        command:             mysqld --lower_case_table_names=1 --skip-ssl
+            --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
+        links:
+            - smtp
+
+    enotaryuaa-app:
+        image: enotaryuaa
+        environment:
+            - SPRING_PROFILES_ACTIVE=dev,swagger
+            - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
+            - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
+            - SPRING_DATASOURCE_URL=jdbc:mariadb://enotaryuaa-mariadb:3306/enotaryuaa
+            - JHIPSTER_SLEEP=45
+            - JHIPSTER_REGISTRY_PASSWORD=admin
+        ports:
+            - 9999:9999
+        links:
+            - smtp
+    enotaryuaa-mariadb:
+        image: mariadb:10.3.7
+        environment:
+            - MYSQL_USER=root
+            - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+            - MYSQL_DATABASE=enotaryuaa
+        command:             mysqld --lower_case_table_names=1 --skip-ssl
+            --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
+
+    jhipster-registry:
+        extends:
+            file: jhipster-registry.yml
+            service: jhipster-registry
+
+    smtp:
+        image: djfarrelly/maildev
+        ports:
+            - 8180:80

@@ -1,0 +1,31 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.enotary"
+    },
+    "jhipsterVersion": "5.0.0",
+    "applicationType": "uaa",
+    "baseName": "enotaryUAA",
+    "packageName": "com.enotary",
+    "packageFolder": "com/enotary",
+    "serverPort": "9999",
+    "authenticationType": "uaa",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mariadb",
+    "prodDatabaseType": "mariadb",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "gradle",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "ba340fe991e9a680ac68698d2e9d5fc452faf50a",
+    "enableTranslation": false,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "clientPackageManager": "yarn",
+    "skipClient": true
+  }
+}
