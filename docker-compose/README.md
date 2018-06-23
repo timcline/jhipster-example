@@ -1,8 +1,9 @@
 # JHipster generated Docker-Compose configuration
 
 ## Usage
-
-Launch all your infrastructure by running: `docker-compose up -d`.
+1. Build the projects: `./build_projects.sh`
+2. Launch the infrastructure: `docker-compose up -d`
+3. Follow the logs: `docker-compose logs -f`
 
 ## Configured Docker services
 
@@ -16,4 +17,10 @@ Launch all your infrastructure by running: `docker-compose up -d`.
 - enotaryUAA's mariadb database
 
 ### Additional Services:
+- smtp server (used as a mock smtp server for local testing)
+
+### Notes:
+* The Registry is exposed at http://localhost:8761
+* The Gateway (webapp) is exposed at http://localhost:8080
+* The mock SMTP server is exposed at http://localhost:8180
 
