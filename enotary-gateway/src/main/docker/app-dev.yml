@@ -1,0 +1,6 @@
+version: '2'
+services:
+    enotarygateway-mariadb:
+        extends:
+            file: mariadb.yml
+            service: enotarygateway-mariadb

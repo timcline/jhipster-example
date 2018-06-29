@@ -33,6 +33,43 @@ Add the `help` flag on any command to see how you can use it. For example, `yarn
 
 The `yarn run` command will list all of the scripts available to run for this project.
 
+### Setting up your environment for development.
+
+1. Start the UAA backend (Service Discovery and DB). This is assuming that the UAA project is located at ../enotary-uaa.
+```bash
+cd ../enotary-uaa
+docker-compuse -f src/main/docker/app-dev.yml up -d
+
+```
+
+2. Start the UAA server.
+```bash
+./gradlew bootRun
+```
+
+3. Start the Microservice Gateway backend (DB).
+```bash
+docker-compuse -f src/main/docker/app-dev.yml up -d
+```
+
+4. Start the Microservice Gateway. You have two options here. You can run the main class EnotaryGatewayApp from the IDE
+or you can run the application from the command line.
+```bash
+# Running the application from the command line.
+./gradlew bootRun
+```
+
+5. (Optional) If you want to have webpack reload changes in the UI automatically you can run the following command.
+```bash
+yarn start
+```
+
+*Notes*
+* The Gateway database is exposed at localhost:3306. The user is `root` with no password.
+* The UAA database is exposed at localhost:3307. The user is `root` with no password.
+* The UAA service is exposed at http://localhost:9999.
+* The Service Registry is exposed at http://localhost:8761.
+
 ### Service workers
 
 Service workers are commented by default, to enable them please uncomment the following code.

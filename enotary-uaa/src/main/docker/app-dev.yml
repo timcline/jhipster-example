@@ -1,0 +1,14 @@
+version: '2'
+services:
+    enotaryuaa-mariadb:
+        extends:
+            file: mariadb.yml
+            service: enotaryuaa-mariadb
+        ports:
+            - 3307:3306
+    jhipster-registry:
+        extends:
+            file: jhipster-registry.yml
+            service: jhipster-registry
+        environment:
+            - SPRING_CLOUD_CONFIG_SERVER_NATIVE_SEARCH_LOCATIONS=file:./central-config/localhost-config/
